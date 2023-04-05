@@ -11,10 +11,10 @@ function Layout({ children, title }) {
             </Head>
             <div className="flex min-h-screen flex-col justify-between">
                 <header>
-                    <nav className="flex h-14 px-8 justify-between items-center bordr-b-4 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white">
+                    <nav className="flex h-14 px-8 justify-between items-center bordr-b-4 bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white">
                         <Link href="/">
                             <a className="text-lg font-bold ">
-                                <img className="h-11 inline-flex" src="/fav-icon.png" />
+                                <img className="h-12 mx-2 inline-flex" src="/main-fav-icon.png" />
                                 Shopping
                             </a>
                         </Link>
