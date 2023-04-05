@@ -35,7 +35,11 @@ function Layout({ children, title }) {
                 <main className="container m-auto mt-4 px-4">
                     {children}
                 </main>
-                <footer className="flex justify-center items-center h-10 bg-gradient-to-r  to-emerald-500 to-90% via-sky-500 via-30% from-indigo-500 from-10% text-white">Copyright © 2023 www.shopping.com . All Rights Reserved. - Legal notice - FAQ</footer>
+                <footer className="text-center font-medium flex justify-center items-center h-10 bg-gradient-to-r  to-emerald-500 to-90% via-sky-500 via-30% from-indigo-500 from-10% text-white">
+                    <span className="">
+                        Copyright © 2023 www.shopping.com . All Rights Reserved. - Legal notice - FAQ
+                    </span>
+                </footer>
             </div >
         </>
     )
