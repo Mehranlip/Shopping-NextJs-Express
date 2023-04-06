@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Book 1",
+    "price": 299,
+    "slug": "Book-1",
+    "description": "New Book",
+    "cat": "Books",
+    "count": 10,
+    "image": "images/Book.png"
+  },
+  {
+    "title": "Book 2",
+    "price": 366,
+    "slug": "Book-2",
+    "description": "New Book",
+    "cat": "Books",
+    "count": 10,
+    "image": "images/Book.png"
+  }
+]
