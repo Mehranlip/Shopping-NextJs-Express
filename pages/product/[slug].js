@@ -7,6 +7,8 @@ import { CartContext } from '../../context/Cart';
 
 function ProductPage() {
     const { state, dispatch } = useContext(CartContext)
+
+    const router = useRouter()
     const { query } = useRouter()
     const { slug } = query
 
@@ -23,7 +25,16 @@ function ProductPage() {
         )
         const qty = existingItem ? existingItem.qty + 1 : 1
 
+        if (product.count < qty) {
+            alert("product is out.")
+
+            return
+        }
+
         dispatch({ type: "ADD_ITEMS", payload: { ...product, qty } })
+
+
+        router.push("/cart")
     }
     return (
         <Layout title={product.title}>
@@ -32,9 +43,9 @@ function ProductPage() {
                     <Image className='rounded-xl' src={product.image} width={350} height={350} layout='responsive' />
                 </div>
                 <div>
-                    <div className='text-lg inline-flex justify-center items-center '>
-                        <h2 className='font-bold'>{product.title}</h2>
-                        <p className='text-white rounded-xl ml-2 px-2 py-1 bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>{product.cat}</p>
+                    <div className='inline-flex justify-center items-center '>
+                        <h2 className='font-bold text-lg'>{product.title}</h2>
+                        <p className='text-white text-sm rounded-xl ml-2 px-2 py-1 bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>{product.cat}</p>
                     </div>
                     <p className='text-justify mt-3'>{product.description}</p>
                 </div>
