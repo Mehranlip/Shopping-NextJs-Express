@@ -1,0 +1,14 @@
+[
+  {
+    "name": "User 1",
+    "email": "user1@mehranlip.ir",
+    "password": "123456",
+    "isAdmin": true
+  },
+  {
+    "name": "User 2",
+    "email": "user2@mehranlip.ir",
+    "password": "123456",
+    "isAdmin": false
+  }
+]
