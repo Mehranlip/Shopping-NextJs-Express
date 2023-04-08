@@ -72,7 +72,7 @@ function CartPage() {
                                 Total price : {" "}
                                 <span className='bg-gray-100 text-black rounded-xl px-2 py-1 '>{cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}</span>
                                 <br />
-                                <button onClick={() => router.push("/checkout")} className='bg-white text-black px-2 py-1 mt-5 rounded-xl '>Checkout  </button>
+                                <button onClick={() => router.push("/login?redirect=/shipping")} className='bg-white text-black px-2 py-1 mt-5 rounded-xl '>Checkout  </button>
 
                             </div>
 

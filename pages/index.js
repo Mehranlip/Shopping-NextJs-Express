@@ -1,7 +1,7 @@
 import Layout from "../components/Layout"
 import Product from "../components/Product"
 import productItems from "../data/products.json"
-
+import dynamic from "next/dynamic"
 
 function Home() {
   return (
@@ -16,4 +16,4 @@ function Home() {
 }
 
 
-export default Home
+export default dynamic(() => Promise.resolve(Home), { ssr: false })
