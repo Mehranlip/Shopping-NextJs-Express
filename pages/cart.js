@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import Layout from './../components/Layout';
+import dynamic from 'next/dynamic';
 import { CartContext } from '../context/Cart';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 function CartPage() {
+
+    const router = useRouter()
 
     const { state, dispatch } = useContext(CartContext)
 
@@ -63,6 +67,16 @@ function CartPage() {
                                 </tbody>
                             </table>
                         </div>
+                        <div className='p-5 text-center items-center justify-center '>
+                            <div className='p-5  text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
+                                Total price : {" "}
+                                <span className='bg-gray-100 text-black rounded-xl px-2 py-1 '>{cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}</span>
+                                <br />
+                                <button onClick={() => router.push("/checkout")} className='bg-white text-black px-2 py-1 mt-5 rounded-xl '>Checkout  </button>
+
+                            </div>
+
+                        </div>
 
                     </div>
                 )
@@ -72,4 +86,4 @@ function CartPage() {
 }
 
 
-export default CartPage
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false })
