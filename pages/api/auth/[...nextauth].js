@@ -1,5 +1,9 @@
 import NextAuth from "next-auth/next";
 
+import { CredentialsProvider } from "next-auth/providers";
+import db from "../../../utils/db";
+import User from "../../../models/user";
+
 
 export default NextAuth({
     session: {
@@ -21,5 +25,16 @@ export default NextAuth({
 
             return token
         }
-    }
+    },
+
+    providers: [
+        CredentialsProvider({
+            async authorize(Credentials) {
+                await db.connect()
+                const user = await User.findOne({
+                    email: Credentials.email,
+                })
+            }
+        })
+    ]
 })
