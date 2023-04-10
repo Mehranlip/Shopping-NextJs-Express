@@ -1,10 +1,11 @@
 import NextAuth from "next-auth/next";
 
-import { CredentialsProvider } from "next-auth/providers";
+import CredentialsProvider from 'next-auth/providers/credentials'
+
 import bcrypt from 'bcryptjs'
 import db from "../../../utils/db";
 import User from "../../../models/user";
-import { errors } from './../../../.next/static/chunks/main';
+;
 
 
 
@@ -26,7 +27,7 @@ export default NextAuth({
 
             if (token?.isAdmin) session.user.isAdmin = token.isAdmin
 
-            return token
+            return session
         }
     },
 

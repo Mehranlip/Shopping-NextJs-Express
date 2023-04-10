@@ -1,14 +1,53 @@
-import dynamic from 'next/dynamic';
-import Layout from './../components/Layout';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
+
+import { useEffect } from 'react'
+
+import { useForm } from 'react-hook-form'
+import { signIn, useSession } from 'next-auth/react'
+
+
+import Layout from '../components/Layout'
 
 
 function LoginPage() {
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    function submitHandler({ email, password }) {
+    const { data: session } = useSession()
 
+    const router = useRouter()
+    const { redirect } = router.query
+
+    useEffect(() => {
+        if (session?.user) {
+            router.push(redirect || '/')
+        }
+    }, [router, session, redirect])
+
+
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm()
+
+    async function submitHandler({ email, password }) {
+        try {
+            const result = await signIn('credentials', {
+                redirect: false,
+                email,
+                password,
+            })
+
+            if (result.error) {
+                console.log('faild')
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
+
+
     return (
         <Layout title="Login">
             <div className="w-full  mx-auto max-w-lg">
@@ -52,6 +91,7 @@ function LoginPage() {
         </Layout>
     )
 }
+
 
 
 export default dynamic(() => Promise.resolve(LoginPage), { ssr: false })
