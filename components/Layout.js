@@ -1,12 +1,15 @@
 import Head from "next/head"
 import Link from "next/link"
+import { Menu } from '@headlessui/react'
+import DropDown from "./DropDown"
 
 
 import { useContext, useState, useEffect } from "react"
 import { CartContext } from "../context/Cart"
 
 
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
+import Cookies from "js-cookie"
 
 
 function Layout({ children, title }) {
@@ -20,6 +23,11 @@ function Layout({ children, title }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.qty, 0))
     }, [cart.cartItems])
+
+    function logoutHandler() {
+        Cookies.remove()
+        signOut({ callbackUrl: '/login' })
+    }
     return (
         <>
             <Head>
@@ -50,7 +58,24 @@ function Layout({ children, title }) {
                                 {status === "loading" ? (
                                     "Loading"
                                 ) : session?.user ? (
-                                    session.user.name
+                                    <Menu as="div" className="relative inline-block ">
+
+                                        <Menu.Button className="px-2 py-1 m-1 border-solid border-2 border-white rounded-lg font-semibold">
+                                            {session.user.name}
+                                        </Menu.Button>
+                                        <Menu.Items className="absolute right-0 w-56 bg-white rounded-xl p-4 origin-top-right border-slate-100">
+                                            <Menu.Item>
+                                                <DropDown className="flex p-2 text-black " href="/profile">
+                                                    Profile
+                                                </DropDown >
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                <a className="flex p-2 text-black " href="#" onClick={logoutHandler}>
+                                                    Logout
+                                                </a>
+                                            </Menu.Item>
+                                        </Menu.Items>
+                                    </Menu>
                                 ) : (
                                     <a className="px-2 py-1 m-1 border-solid border-2 border-white rounded-lg font-semibold ">
                                         Login
