@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-function ProductItem({ item }) {
+function ProductItem({ item, addToCart }) {
     return (
         <div className="bg-white rounded-xl mb-5 block shadow-lg shadow-slate-500-500/50">
             <Link href={`/product/${item.slug}`}>
@@ -21,7 +21,7 @@ function ProductItem({ item }) {
 
                     </div>
                     <div className=" col-end-8 col-span-1">
-                        <button className="rounded-xl  text-white px-4 py-2 bg-gradient-to-r  to-emerald-500 to-90% via-sky-500 via-30% from-indigo-500 from-10%">
+                        <button onClick={() => addToCart(item)} className="rounded-xl  text-white px-4 py-2 bg-gradient-to-r  to-emerald-500 to-90% via-sky-500 via-30% from-indigo-500 from-10%">
                             Add to Cart
                         </button>
                     </div>

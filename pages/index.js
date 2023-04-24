@@ -1,3 +1,7 @@
+import { useContext } from "react"
+import { CartContext } from "../context/Cart"
+
+
 import Layout from "../components/Layout"
 import ProductItem from "../components/ProductItem"
 
@@ -8,11 +12,26 @@ import Product from "../models/product"
 import dynamic from "next/dynamic"
 
 function Home({ products }) {
+  const { state, dispatch } = useContext(CartContext)
+  const { cart } = state
+
+  function addToCartHandler(product) {
+    const existingItem = cart.cartItems.find(
+      (item) => item.slug === product.slug
+    )
+
+    const qty = existingItem ? existingItem.qty + 1 : 1
+
+    dispatch({ type: 'ADD_ITEMS', payload: { ...product, qty } })
+
+  }
+
+
   return (
     <Layout title='Home Page'>
       <div className="grid gride-cols-1 gap-12 md:grid-cols-3 lg:grid-cols-4">
         {products.map((pItem) => (
-          <ProductItem item={pItem} key={pItem.slug}></ProductItem>
+          <ProductItem addToCart={addToCartHandler} item={pItem} key={pItem.slug}></ProductItem>
         ))}
       </div>
     </Layout>
