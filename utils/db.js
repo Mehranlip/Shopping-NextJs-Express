@@ -8,7 +8,13 @@ async function connect() {
     console.log("Connected");
 }
 
-const db = { connect }
+function convertToObj(doc) {
+    doc._id = doc._id.toString()
+
+    return doc
+}
+
+const db = { connect, convertToObj }
 
 
 export default db
