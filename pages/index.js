@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { toast } from "react-toastify"
 import { CartContext } from "../context/Cart"
 
 
@@ -23,6 +24,8 @@ function Home({ products }) {
     const qty = existingItem ? existingItem.qty + 1 : 1
 
     dispatch({ type: 'ADD_ITEMS', payload: { ...product, qty } })
+
+    toast.success('Product Added')
 
   }
 

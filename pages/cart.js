@@ -5,6 +5,8 @@ import { CartContext } from '../context/Cart';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { toast } from "react-toastify"
+
 function CartPage() {
 
     const router = useRouter()
@@ -17,6 +19,7 @@ function CartPage() {
 
     function removeItemHandler(item) {
         dispatch({ type: "REMOVE_ITEM", payload: item })
+        toast.error('Product Removed')
     }
 
     return (

@@ -11,6 +11,9 @@ import { CartContext } from "../context/Cart"
 import { useSession, signOut } from "next-auth/react"
 import Cookies from "js-cookie"
 
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function Layout({ children, title }) {
     const { status, data: session } = useSession()
@@ -34,6 +37,7 @@ function Layout({ children, title }) {
                 <link rel="shortcut icon" href="/fav-icon.png" />
                 <title>{`${title} - Shopping`}</title>
             </Head>
+            <ToastContainer position="top-right mt-6" limit={1} />
             <div className="flex min-h-screen flex-col justify-between">
                 <header>
                     <nav className="flex h-14 px-8 justify-between items-center bordr-b-4 bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white">

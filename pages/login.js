@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form'
 import { signIn, useSession } from 'next-auth/react'
 
 
+
+
 import Layout from '../components/Layout'
 
 
@@ -20,6 +22,7 @@ function LoginPage() {
     useEffect(() => {
         if (session?.user) {
             router.push(redirect || '/')
+          
         }
     }, [router, session, redirect])
 
@@ -38,6 +41,8 @@ function LoginPage() {
                 email,
                 password,
             })
+
+
 
             if (result.error) {
                 console.log('faild')
