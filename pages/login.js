@@ -59,7 +59,7 @@ function LoginPage() {
                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
                             Email
                         </label>
-                        <input {...register('email', { required: true })} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" autoFocus />
+                        <input {...register('email', { required: true })} className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" autoFocus />
                         {errors.email && (
                             <div className='text-red-500'>Please enter email.</div>
                         )}
@@ -73,7 +73,7 @@ function LoginPage() {
                                 value: 5,
                                 message: "Password mut be at least 5 chars."
                             }
-                        })} className="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="************" />
+                        })} className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="************" />
                         {errors.password && (
                             <div className='text-red-500'>
                                 {errors.password.message}
