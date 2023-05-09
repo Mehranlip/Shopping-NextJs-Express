@@ -23,6 +23,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   )
 }
 
+
+
 function Auth({ children }) {
   const router = useRouter()
 
