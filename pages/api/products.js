@@ -8,6 +8,8 @@ async function handler(req, res) {
     await Product.insertMany(products)
 
     res.send({ message: "products added" })
+
+
 }
 
 

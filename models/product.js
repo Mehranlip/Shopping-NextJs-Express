@@ -11,6 +11,8 @@ const produtSchema = new mongoose.Schema({
     cat: { type: String, required: true },
     count: { type: Number, required: true, default: 0 },
     image: { type: String, required: true },
+
+
 })
 
 
