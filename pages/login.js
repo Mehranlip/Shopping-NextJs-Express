@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 
 import { useEffect } from 'react'
 
@@ -54,7 +55,7 @@ function LoginPage() {
     return (
         <Layout title="Login">
             <div className="w-full  mx-auto max-w-lg">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(submitHandler)}>
+                <form className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(submitHandler)}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" for="username">
                             Email
@@ -81,7 +82,7 @@ function LoginPage() {
                         )}
                     </div>
                     <div className="flex items-center justify-between">
-                        <button className=" px-2 py-1 text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+                        <button className=" w-28 px-2 py-1 text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                             Log In
                         </button>
                         <a className="inline-block align-baseline font-bold text-sm text-gray-700-500 hover:text-blue-800" href="#">
