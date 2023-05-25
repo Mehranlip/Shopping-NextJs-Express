@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
+
 
 import { useEffect } from 'react'
 

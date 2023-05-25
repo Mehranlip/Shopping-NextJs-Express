@@ -3,19 +3,44 @@ import Layout from './../components/Layout';
 import CheckoutWizard from './../components/CheckoutWizard';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CartContext } from '../context/Cart';
+import Cookies from 'js-cookie';
 
 
 function PaymentPage() {
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+    const { state, dispatch } = useContext(CartContext)
+
+    const { cart } = state
+    const { paymentMethod } = cart
+
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
 
     const router = useRouter()
 
     function submitHandler(event) {
         event.preventDefault()
+
+        if (!selectedPaymentMethod) {
+            alert('Please Select Payment Method')
+        }
+
+        dispatch({ type: ' SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
+
+        Cookies.set(
+            'cart',
+            JSON.stringify({
+                ...cart,
+                paymentMethod: selectedPaymentMethod,
+            })
+        )
+
+        router.push('/placeorder')
     }
 
-    const methods = ['Gatway', "offline Payment"]
+    const methods = ['Gateway', 'Offline Payment']
+
+
     return (
         <Layout title="Payment">
             <CheckoutWizard activeStep={2} />
