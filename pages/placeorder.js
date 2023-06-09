@@ -88,6 +88,24 @@ function Placeorder() {
 
                     </div>
                 </div>
+                <div className='p-5'>
+                    <h2 className='text-lg w-auto px-3 py-1 text-white  rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>Order Summery</h2>
+                    <ul>
+                        <li>
+                            <div className=' flex justify-between  px-3  mt-3  py-1 text-gray-700  text-xl rounded-xl bg-gray-300 '>
+                                <div>Total Price</div>
+                                <div>
+                                    {cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}
+                                </div>
+                            </div>
+                        </li>
+                        <li className='text-center'>
+                            <button className=' w-fitt text-center px-2 py-1 mt-5 text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
+                                Place Order
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </Layout>
     )
