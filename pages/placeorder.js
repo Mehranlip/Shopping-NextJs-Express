@@ -1,7 +1,10 @@
 import React from 'react'
+import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
 import { CartContext } from '../context/Cart';
+import dynamic from 'next/dynamic';
+
 
 import Layout from './../components/Layout';
 import CheckoutWizard from './../components/CheckoutWizard';
@@ -9,7 +12,8 @@ import CheckoutWizard from './../components/CheckoutWizard';
 function Placeorder() {
     const { state } = useContext(CartContext)
     const { cart } = state
-    const { shippingData, paymentMethod } = cart
+    const { shippingData, paymentMethod, cartItems } = cart
+    console.log(cartItems);
 
 
     return (
@@ -44,10 +48,50 @@ function Placeorder() {
                             <Link href="/payment">Edit</Link>
                         </div>
                     </div>
+                    <div className='overflow-x-auto p-5'>
+                        <div className='text-lg w-auto px-3 py-1 text-white  rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
+                            Order Items
+                        </div>
+                        <table className='min-w-full'>
+                            <thead className='border-b'>
+                                <tr>
+                                    <th className='px-5 text-left'>Item</th>
+                                    <th className='p-5 text-right'>Quantity</th>
+                                    <th className='p-5 text-right'>Price</th>
+                                    <th className='p-5 text-right'>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartItems.map((item) => (
+                                    <tr key={item._id} className='border-b'>
+                                        <td>
+                                            <div className='flex items-center'>
+
+
+                                                <Image className='rounded-xl' src={item.image} width={50} height={50} />
+                                                &nbsp;
+                                                {item.title}
+
+                                            </div>
+
+                                        </td>
+                                        <td className='p-5 text-right'>{item.qty}</td>
+                                        <td className='p-5 text-right'>{item.price}</td>
+                                        <td className='p-5 text-right'>{item.qty * item.price}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className='w-20 px-3 py-1 text-white  text-xl rounded-xl bg-gray-400 text-center'>
+                            <Link href="/cart">Edit</Link>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </Layout>
     )
 }
 
-export default Placeorder
+
+export default dynamic(() => Promise.resolve(Placeorder), { ssr: false })
