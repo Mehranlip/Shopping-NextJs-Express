@@ -6,6 +6,8 @@ import { CartContext } from '../context/Cart';
 import dynamic from 'next/dynamic';
 
 
+
+
 import Layout from './../components/Layout';
 import CheckoutWizard from './../components/CheckoutWizard';
 
@@ -13,7 +15,31 @@ function Placeorder() {
     const { state } = useContext(CartContext)
     const { cart } = state
     const { shippingData, paymentMethod, cartItems } = cart
-    console.log(cartItems);
+
+
+
+    async function placeOrderHandler() {
+
+        const totalPrice = cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)
+
+        const response = await fetch('/api/orders', {
+            method: 'POST',
+            body: JSON.stringify({
+                orderItems: cartItems,
+                shippingData,
+                paymentMethod,
+                totalPrice
+            }),
+            headers: { 'Content-Type': "application/json" },
+
+        })
+
+        const data = await response.json()
+        console.log(data);
+
+    }
+
+
 
 
     return (
@@ -100,7 +126,7 @@ function Placeorder() {
                             </div>
                         </li>
                         <li className='text-center'>
-                            <button className=' w-fitt text-center px-2 py-1 mt-5 text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
+                            <button onClick={placeOrderHandler} className=' w-fitt text-center px-2 py-1 mt-5 text-white  text-xl rounded-xl bg-gradient-to-r  from-pink-600 from-10% via-sky-500 via-30% to-emerald-500 to-90%'>
                                 Place Order
                             </button>
                         </li>

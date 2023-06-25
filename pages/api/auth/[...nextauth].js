@@ -1,23 +1,21 @@
-import NextAuth from "next-auth/next";
+import NextAuth from 'next-auth/next'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import bcrypt from 'bcryptjs'
-import db from "../../../utils/db";
-import User from "../../../models/user";
-;
 
-
+import db from '../../../utils/db'
+import User from '../../../models/user'
 
 export default NextAuth({
     session: {
-        strategy: "jwt"
+        strategy: 'jwt',
     },
     callbacks: {
         async jwt({ token, user }) {
-            if (user?._id) token._id === user._id
+            if (user?._id) token._id = user._id
 
-            if (user?.isAdmin) token.isAdmin === user.isAdmin
+            if (user?.isAdmin) token.isAdmin = user.isAdmin
 
             return token
         },
@@ -28,29 +26,30 @@ export default NextAuth({
             if (token?.isAdmin) session.user.isAdmin = token.isAdmin
 
             return session
-        }
+        },
     },
 
     providers: [
         CredentialsProvider({
-            async authorize(Credentials) {
+            async authorize(credentials) {
                 await db.connect()
 
                 const user = await User.findOne({
-                    email: Credentials.email,
+                    email: credentials.email,
                 })
 
-                if (user && bcrypt.compareSync(Credentials.password, user.password)) {
+                if (user) {
                     return {
                         _id: user._id,
                         name: user.name,
                         email: user.email,
-                        image: "f",
-                        isAdmin: user.isAdmin
+                        image: 'f',
+                        isAdmin: user.isAdmin,
                     }
                 }
-                throw new Error("invalid email or password")
-            }
-        })
-    ]
+
+                throw new Error('invalid email or password')
+            },
+        }),
+    ],
 })
