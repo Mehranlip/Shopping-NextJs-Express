@@ -1,5 +1,5 @@
 {
-  "name": "shoping-nextjs-tailwind-mongodb",
+  "name": "shopping",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,19 +12,19 @@
     "@headlessui/react": "^1.7.13",
     "bcryptjs": "^2.4.3",
     "js-cookie": "^3.0.1",
-    "mongoose": "^7.0.3",
+    "mongoose": "^7.0.1",
     "next": "12.2.5",
-    "next-auth": "^4.21.1",
+    "next-auth": "^4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.43.9",
+    "react-hook-form": "^7.43.2",
     "react-toastify": "^9.1.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "eslint": "8.37.0",
-    "eslint-config-next": "13.2.4",
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.2.5",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.2.4"
   }
 }

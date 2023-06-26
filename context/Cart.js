@@ -5,65 +5,65 @@ import Cookies from "js-cookie";
 export const CartContext = createContext()
 
 const initialState = {
-    cart: Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : { cartItems: [], shippingData: {} }
+  cart: Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : { cartItems: [], shippingData: {} }
 }
 
 
 function reducer(state, action) {
-    switch (action.type) {
-        case 'ADD_ITEMS': {
-            const newItem = action.payload
+  switch (action.type) {
+    case 'ADD_ITEMS': {
+      const newItem = action.payload
 
 
-            const exisitingItem = state.cart.cartItems.find((item) => item.slug === newItem.slug)
+      const exisitingItem = state.cart.cartItems.find((item) => item.slug === newItem.slug)
 
 
-            const cartItems = exisitingItem ? state.cart.cartItems.map((item) => item.title === exisitingItem.title ? newItem : item) : [...state.cart.cartItems, newItem]
+      const cartItems = exisitingItem ? state.cart.cartItems.map((item) => item.title === exisitingItem.title ? newItem : item) : [...state.cart.cartItems, newItem]
 
-            Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }))
-            return { ...state, cart: { ...state.cart, cartItems } }
-        }
-
-        case "REMOVE_ITEM": {
-            const cartItems = state.cart.cartItems.filter((item) => item.slug !== action.payload.slug)
-            Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }))
-            return { ...state, cart: { ...state.cart, cartItems } }
-        }
-
-        case 'SAVE_SHIPPING_DATA':
-            return {
-                ...state,
-                cart: {
-                    ...state.cart,
-                    shippingData: {
-                        ...state.cart.shippingData,
-                        ...action.payload,
-                    },
-                },
-            }
-        case 'SAVE_PAYMENT_METHOD':
-            return {
-                ...state,
-                cart: {
-                    ...state.cart,
-                    paymentMethod: action.payload,
-                },
-            }
-
-
-        default:
-            return state
+      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }))
+      return { ...state, cart: { ...state.cart, cartItems } }
     }
+
+    case "REMOVE_ITEM": {
+      const cartItems = state.cart.cartItems.filter((item) => item.slug !== action.payload.slug)
+      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }))
+      return { ...state, cart: { ...state.cart, cartItems } }
+    }
+
+    case 'SAVE_SHIPPING_DATA':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingData: {
+            ...state.cart.shippingData,
+            ...action.payload,
+          },
+        },
+      }
+    case 'SAVE_PAYMENT_METHOD':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          paymentMethod: action.payload,
+        },
+      }
+
+
+    default:
+      return state
+  }
 
 }
 
 
 export function CartContextProvider({ children }) {
 
-    const [state, dispatch] = useReducer(reducer, initialState)
-    const value = { state, dispatch }
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const value = { state, dispatch }
 
-    return <CartContext.Provider value={value}>
-        {children}
-    </CartContext.Provider>
+  return <CartContext.Provider value={value}>
+    {children}
+  </CartContext.Provider>
 }

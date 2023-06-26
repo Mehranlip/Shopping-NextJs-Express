@@ -1,6 +1,3 @@
-
-<img src="https://github.com/Mehranlip/shopping-nextjs-express-mongodb-tailwind/assets/60979458/90aa66d4-9402-46e2-8974-d3be2a613ebf" />
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
