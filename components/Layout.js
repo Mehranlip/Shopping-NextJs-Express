@@ -78,6 +78,11 @@ function Layout({ children, title }) {
                           Logout
                         </a>
                       </Menu.Item>
+                      <Menu.Item>
+                        <DropDown className="flex p-2 text-black " href="/order-history">
+                          Order History
+                        </DropDown >
+                      </Menu.Item>
                     </Menu.Items>
                   </Menu>
                 ) : (
