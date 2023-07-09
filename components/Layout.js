@@ -73,15 +73,25 @@ function Layout({ children, title }) {
                           Profile
                         </DropDown >
                       </Menu.Item>
-                      <Menu.Item>
-                        <a className="flex p-2 text-black " href="#" onClick={logoutHandler}>
-                          Logout
-                        </a>
-                      </Menu.Item>
+
                       <Menu.Item>
                         <DropDown className="flex p-2 text-black " href="/order-history">
                           Order History
                         </DropDown >
+                      </Menu.Item>
+                      {
+                        session.user.isAdmin && (
+                          <Menu.Item>
+                            <DropDown className="flex p-2 text-black " href="/admin/dashboard">
+                              Dashboard
+                            </DropDown >
+                          </Menu.Item>
+                        )
+                      }
+                      <Menu.Item>
+                        <a className="flex p-2 text-black " href="#" onClick={logoutHandler}>
+                          Logout
+                        </a>
                       </Menu.Item>
                     </Menu.Items>
                   </Menu>
