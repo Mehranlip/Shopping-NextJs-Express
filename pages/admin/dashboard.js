@@ -27,26 +27,26 @@ function DashboardPage() {
             <div className='grid md:grid-cols-4 md:gap-4'>
                 <div>
                     <ul>
-                        <li>
+                        <li className='w-1/2 p-2 m-2 bg-white rounded-md' >
                             <Link href="/admin/dashboard">
                                 <a className='font-bold'>
                                     Dashborad
                                 </a>
                             </Link>
                         </li>
-                        <li>
+                        <li className='w-1/2 p-2 m-2 bg-white rounded-md'  >
                             <Link href="/admin/orders">
 
                                 Orders
 
                             </Link>
                         </li>
-                        <li>
+                        <li className='w-1/2 p-2 m-2 bg-white rounded-md' >
                             <Link href="/admin/products">
                                 Producst
                             </Link>
                         </li>
-                        <li>
+                        <li className='w-1/2 p-2 m-2 bg-white rounded-md' >
                             <Link href="/admin/users">
                                 Users
                             </Link>
@@ -59,9 +59,18 @@ function DashboardPage() {
                         {
                             adminData.map((item, index) => (
                                 <div key={index} className='flex p-2'>
-                                    <div className='px-2'>{item.ordersCount}</div>
-                                    <div className='px-2'>{item.productsCount}</div>
-                                    <div className='px-2'>{item.usersCount}</div>
+                                    <div className='m-5 p-5 bg-white rounded-xl text-center w-24'>
+                                        <p className='text-3xl'>{item.ordersCount}</p>
+                                        <p>Orders</p>
+                                    </div>
+                                    <div className='m-5 p-5 bg-white rounded-xl text-center w-24'>
+                                        <p className='text-3xl'>{item.productsCount}</p>
+                                        <p>Product</p>
+                                    </div>
+                                    <div className='m-5 p-5 bg-white rounded-xl text-center w-24'>
+                                        <p className='text-3xl'>{item.usersCount}</p>
+                                        <p>Users</p>
+                                    </div>
                                 </div>
                             ))
                         }
